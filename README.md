@@ -1,6 +1,6 @@
-# Webbasierende Strichliste
+# Webbasierte Strichliste
 
-Dies ist eine Webbasierende Strichliste. Sie kann auf einem Tomcat deployt werden. Dazu bitte das build.xml (Zeile 8-10) anpassen.
+Dies ist eine webbasierte Strichliste. Sie kann auf einem Tomcat deployt werden. Dazu bitte das build.xml (Zeile 8-10) anpassen.
 
 
 

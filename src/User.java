@@ -64,47 +64,34 @@ public class User implements Serializable {
     }
 
     public void setMinusTen(int count) {
-        double tmp = 1;
-        if((antiAlk *1 + beer * 1.5 + schnaps * 2 + shot * 1) > count) { 
-            while(tmp <= count){
-                while(antiAlk > 0) {
-                    if(tmp <= count) {
-                        antiAlk--;
-                        tmp++;
-                    } else {
-                        break;
-                    }
-                }
-                
-                while(schnaps > 0) {
-                    if(tmp <= count) {
-                        schnaps--;
-                        tmp += 2.00;
-                    } else {
-                        break;
-                    }
-                }
-                while(shot > 0) {
-                    if(tmp <= count) {
-                        shot--;
-                        tmp++;
-                    } else {
-                        break;
-                    }
-                }
-
-                while(beer > 0) {                   
-                    if(tmp <= count) {
-                        beer--;
-                        tmp += 1.5;
-                    } else {
-                        break;
-                    }
+        double tmp = 0;
+        Price price = new Price();
+        // > 10 €
+        if((antiAlk * price.getPrAntiAlk() + beer * price.getPrBeer() + schnaps * price.getPrSchnaps() + shot * price.getPrShots()) >= count) { 
+            System.out.println("tmp: " + tmp);
+            while(tmp < count){
+                if(antiAlk != 0) {
+                    antiAlk--;
+                    tmp = tmp + price.getPrAntiAlk(); 
+                } else if(schnaps != 0) {
+                    schnaps--;
+                    tmp = tmp + price.getPrSchnaps();
+                } else if(shot != 0) {
+                    shot--;
+                    tmp = tmp + price.getPrShots();
+                } else {
+                    beer--;
+                    tmp = tmp + price.getPrBeer();
                 }
             }
-            if(tmp == 11.5) {
-                shot++;   
-            } 
+            if(tmp == 10.5) {
+                shot++;
+            } else if(tmp == 11) {
+                antiAlk++;
+            } else if(tmp == 11.5) {
+                antiAlk++;
+                shot++;
+            }
         }
     }
 }

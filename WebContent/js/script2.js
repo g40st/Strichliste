@@ -59,7 +59,7 @@ function receiveMessageAdmin(message) {
         };
 
         $('.Login').append('<br><button id="bezahltBtn" type="button" class="btn btn-primary" data-dismiss="modal">bezahlen auf 0 setzen</button><br>');
-        $('.Login').append('<br><button id="bezahlt10Btn" type="button" class="btn btn-primary" data-dismiss="modal">bezahlen 10 Euro</button>');
+        $('.Login').append('<br><button id="bezahlt10Btn" type="button" class="btn btn-primary" data-dismiss="modal">10 Euro bezahlen </button>');
 
         $("#bezahltBtn").click(function() {
             //console.log($(".selectpicker").val());
@@ -81,8 +81,6 @@ function receiveMessageAdmin(message) {
             "Username" : $(".selectpicker").val()
             };
             Socket.send(JSON.stringify(request));
-
-            alert($(".selectpicker").val() + " hat bezahlt!");
         });
 
         $('.Login').append('<br><button id="btnPDF" type="button" class="btn btn-primary" data-dismiss="modal">PDF export</button>');

@@ -10,7 +10,10 @@
     <property name="password" value="admin"/>
 
     <!-- Configure the path to the Tomcat installation -->
+    <!-- Linux -->
     <property name="catalina.home" value="/opt/tomcat"/>
+    <!-- Windows -->
+    <!--<property name="catalina.home" value="C:\apache-tomcat-8.0.28"/> -->
 
     <!-- Configure the custom Ant tasks for the Manager application -->
     <import file="${catalina.home}/bin/catalina-tasks.xml"/>

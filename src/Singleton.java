@@ -2,27 +2,29 @@ import java.io.*;
 
 public class Singleton {
     private static Singleton singleton;
-    private static final User[] users = new User[14];
+    private static final User[] users = new User[16];
     private static final Price price = new Price(); 
     
     private Singleton() {
-        users[0] = new User("dummy");
+        users[0] = new User("Michi");
         users[1] = new User("Barth");
         users[2] = new User("Timo");
 		users[3] = new User("Schwanz");
         users[4] = new User("Jenny");
         users[5] = new User("Denise");
-        users[6] = new User("Jonas");
+        users[6] = new User("Steck");
         users[7] = new User("ghost");
         users[8] = new User("Jan");
 		users[9] = new User("Glaser");
 		users[10] = new User("Karl-Josef");
 		users[11] = new User("Wohnhaas");
         users[12] = new User("Jannic");
-        users[13] = new User("Michi");
+        users[13] = new User("Pitsch");
+        users[14] = new User("Achim");
+        users[15] = new User("Ralle");
     }
 
-    public static synchronized Singleton getInstance(){
+    public static synchronized Singleton getInstance() {
         if (singleton == null){
             singleton = new Singleton();
             Serial serial = new Serial();
@@ -75,34 +77,50 @@ public class Singleton {
         Serial serial = new Serial();
         serial.writeToFile(users);
     }
+
+    public synchronized void setDataMinusTen(User user, int i) {
+        user.setMinusTen(10);
+        Serial serial = new Serial();
+        serial.writeToFile(users);
+    }
+
+    public synchronized void writeToStick() {
+        Serial serial = new Serial();
+        serial.writeToStick(users);
+    }
 }
 class Serial {
-    private final static String fileName = new String("strichliste.txt");
-    private final static String userDir = System.getProperty("user.home");
-    private final static String separator = File.separator;
-    private final static String filePath = userDir+separator+fileName;
-    // auf Windows anpassen
-    private final static String path = "/home/ghost/Downloads/"; 
+    // Unter Linux
+    private final static String fileName = new String("/home/ghost/strichliste.txt");
+
+    // Unter Windows /apache-tomcat/bin
+    //private final static String fileName = new String("strichliste.txt");
+    
+    //private final static String userDir = System.getProperty("user.home");
+    //private final static String separator = File.separator;
+    //private final static String filePath = userDir+separator+fileName;
+    
+    // Backup auf USB-Stick gemounted unter F: (fuer Windows)
+    private final static String stickFilePath = "F:\\" +fileName; 
+
     public static void writeToFile(User[] users) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
-            ObjectOutputStream out2 = new ObjectOutputStream(new FileOutputStream(path + fileName));
-            
-            File file = new File(path + "backup.txt");
-            file.createNewFile();
-            FileWriter writer = new FileWriter(file); 
-            writer.write("Name | AntiAlk  Bier  Schnaps  Shots \n");
-
             for (int i = 0; i < users.length ; i++) {
                 out.writeObject(users[i]);
-                out2.writeObject(users[i]);
-                writer.write(users[i].getName() + " | " + users[i].getAntiAlk() + "  " + users[i].getBeer() + "  " + users[i].getSchnaps() + "  " + users[i].getShot() + "\n");
-                writer.flush(); 
             }
             out.close();
+        } catch(Exception ex) {
+            System.out.println("Exception " + ex);
+        }
+    }
+    public static void writeToStick(User[] users) {
+        try {
+            ObjectOutputStream out2 = new ObjectOutputStream(new FileOutputStream(stickFilePath));
+            for (int i = 0; i < users.length ; i++) {
+                out2.writeObject(users[i]);
+            }
             out2.close();
-            writer.close();
-
         } catch(Exception ex) {
             System.out.println("Exception " + ex);
         }
@@ -117,7 +135,7 @@ class Serial {
             }
             in.close();
         } catch(Exception ex) {
-            System.out.println("Exception beim Read " + ex);
+            System.out.println("Exception " + ex);
         }
     }
 }

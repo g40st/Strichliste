@@ -63,4 +63,48 @@ public class User implements Serializable {
         this.shot = count;
     }
 
+    public void setMinusTen(int count) {
+        double tmp = 1;
+        if((antiAlk *1 + beer * 1.5 + schnaps * 2 + shot * 1) > count) { 
+            while(tmp <= count){
+                while(antiAlk > 0) {
+                    if(tmp <= count) {
+                        antiAlk--;
+                        tmp++;
+                    } else {
+                        break;
+                    }
+                }
+                
+                while(schnaps > 0) {
+                    if(tmp <= count) {
+                        schnaps--;
+                        tmp += 2.00;
+                    } else {
+                        break;
+                    }
+                }
+                while(shot > 0) {
+                    if(tmp <= count) {
+                        shot--;
+                        tmp++;
+                    } else {
+                        break;
+                    }
+                }
+
+                while(beer > 0) {                   
+                    if(tmp <= count) {
+                        beer--;
+                        tmp += 1.5;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            if(tmp == 11.5) {
+                shot++;   
+            } 
+        }
+    }
 }

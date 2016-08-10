@@ -3,7 +3,7 @@ class Price {
     double prAntialk = 1;
     double prBeer = 1.50;
     double prSchnaps = 2.00;
-    double prShot = 1.00;
+    double prShot = 0.50;
 
     public Price(){}
 

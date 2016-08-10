@@ -102,7 +102,7 @@ public class Endpoint {
         } else if(msgType == 8) { 
             String msgPassword = (String) jsonMessage.get("Password").toString();
             boolean pwOK = false;
-            if(msgPassword.equals("admin")) {
+            if(msgPassword.equals("adminadmin")) {
                 pwOK = true;
                 
             }
@@ -125,11 +125,20 @@ public class Endpoint {
                     singleton.setData(usertmp[i], 0);
                 }
             }
-        } 
+        } else if(msgType == 11) {
+            User usertmp[] = singleton.getUsers();
+            for (int i = 0; i < usertmp.length; i++) {
+                String msgUsername = (String) jsonMessage.get("Username").toString();
+                if(msgUsername.equals(usertmp[i].getName())) {
+                    singleton.setDataMinusTen(usertmp[i], 10);
+                }
+            }
+        }
     }
 
     @OnClose
     public void closed(Session session) {
+        singleton.writeToStick();
         ConnectionManager.removeTmpSession(session);
     }
 

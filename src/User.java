@@ -79,7 +79,7 @@ public class User implements Serializable {
                 } else if(shot != 0) {
                     shot--;
                     tmp = tmp + price.getPrShots();
-                } else {
+                } else if(beer != 0) {
                     beer--;
                     tmp = tmp + price.getPrBeer();
                 }

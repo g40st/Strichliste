@@ -73,15 +73,9 @@ function receiveMessage(message) {
             $('.btn-group-vertical').append('<button type="button" class="btn btn-primary">' + msgServer.Users[i].Username + '</button>');
         };
         // Die Buttons mit dem Daten aus dem ersten User versehen
-        $('.container').append('<div class="col-md-9 buttons"><div class="data"><h3>' + msgServer.Users[0].Username + ':</h3><button id="AntiAlk" class="btn btn-success" type="button">' +
-                                    'AntiAlk <span class="badge">' + msgServer.Users[0].AntiAlk +'</span></button><br>' +
-                                    '<button id="Beer" class="btn btn-success" type="button">' +
-                                    'Bier <span class="badge">' + msgServer.Users[0].Beer +'</span></button><br>' +
-                                    '<button id="Schnaps" class="btn btn-success" type="button">' +
-                                    'Schnaps <span class="badge">' + msgServer.Users[0].Schnaps +'</span></button><br>' + 
-                                    '<button id="Shot" class="btn btn-success" type="button">' +
-                                    'Shot <span class="badge">' + msgServer.Users[0].Shot +'</span></button><br></div></div>');
+        $('.container').append('<div class="col-md-9 buttons"><div class="data"></div></div>');
         
+        /*
         $(".btn-success").click(function(event){
             var request = {
                 "Type": "3",
@@ -91,6 +85,7 @@ function receiveMessage(message) {
             };
             Socket.send(JSON.stringify(request));
         });
+        */
         
         // Listener fuer den Selectpicker 
         $('#buttonGroup button').click(function(event) {

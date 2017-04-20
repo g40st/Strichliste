@@ -90,15 +90,12 @@ public class Singleton {
     }
 }
 class Serial {
-    // Unter Linux
-    private final static String fileName = new String("/home/ghost/strichliste.txt");
+    // Linux (user home)
+    private final static String userDir = System.getProperty("user.home");
+    private final static String fileName = new String(userDir + "/StrichlisteDB.txt");
 
     // Unter Windows /apache-tomcat/bin
-    //private final static String fileName = new String("strichliste.txt");
-    
-    //private final static String userDir = System.getProperty("user.home");
-    //private final static String separator = File.separator;
-    //private final static String filePath = userDir+separator+fileName;
+    //private final static String fileName = new String("StrichlisteDB.txt");
     
     // Backup auf USB-Stick gemounted unter F: (fuer Windows)
     private final static String stickFilePath = "F:\\" +fileName; 

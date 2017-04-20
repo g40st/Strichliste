@@ -6,6 +6,8 @@
 
     <!-- Configure properties to access the Manager application -->
     <property name="url"      value="http://localhost:8080/manager/text"/>
+    <!-- Gitlab_Debian Server Adresse s-IT Server -->
+    <!-- <property name="url"      value="http://localhost:8082/manager/text"/> -->
     <property name="username" value="admin"/>
     <property name="password" value="admin"/>
 
@@ -37,8 +39,10 @@
     
     <target name="war" depends="compile">
         <war destfile="dist/strichliste.war" webxml="WebContent/WEB-INF/web.xml">
-            <fileset dir="WebContent"/>
-            <lib dir="WebContent/WEB-INF/lib"/>
+            <fileset dir="WebContent">
+                <!-- > Tomcat 7.0.45 websocket.jar included in Tomcat -->
+                <exclude name="WEB-INF/lib/websocket-api.jar"/>
+            </fileset>
             <classes dir="build/classes"/>
         </war>
     </target>

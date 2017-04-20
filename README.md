@@ -12,9 +12,8 @@ Datei: conf/tomcat-users.xml
 
 # Screenshots
 
-![Alt text](/Stuff/Home.jpg?raw=true "home view")
+![ScreenShot](https://raw.githubusercontent.com/g40st/Strichliste/master/Stuff/Home.png)
 
-
-![Alt text](/Stuff/Drink.jpg?raw=true "home view")
+![ScreenShot](https://raw.githubusercontent.com/g40st/Strichliste/master/Stuff/Drink.png)
 
 Christian Högerle

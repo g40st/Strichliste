@@ -1,10 +1,42 @@
 
-.btn-success {
-	margin-left: 0;
-	margin-top: 15px;
-	margin-left: 10px;
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 5px;
+  width: auto;
 }
 
 #btnPDF {
     margin-top: 25px;
+}
+
+#navbar1 {
+    background-color: #3e474c;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white; 
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #afca05;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: 15px; 
+}
+
+.spacingButton {
+    margin-top: 1em;
+}
+
+.btn-success {
+    background-color: #afca05;
+    border: none;
+}
+
+.thumbnail {
+  background-color: #f9f9f9;
 }

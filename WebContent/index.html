@@ -4,35 +4,49 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-        
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>  
+        
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css"> 
-        <link rel="stylesheet" href="css/site.css">  
-                   
+        <link rel="stylesheet" href="css/site.css">   
     </head>
     <body>
-        <div class="container">
-            <h2 align="center">Strichliste Bude Beira</h2>
-                <button type="button" id="btnAdd" class="btn btn-primary">Drink</button><br><br>       
-                <table class="table table-striped table-hover">
-                    <thead>
-                      <tr>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="img/brand.jpg" alt="nbt beira"></a>
+                </div>
+                <div id="navbar1" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active" class="navbar-listItem"><a href="#">Home</a></li>
+                        <li class="navbar-listItem"><a href="#">Drink</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid contentList">  
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
                         <th>Name</th>
                         <th>Anti Alk</th>
                         <th>Bier</th>
                         <th>Schnaps</th>
                         <th>Shots</th>
                         <th>Gesamt</th>
-                      </tr>
-                    </thead>
-                    <tbody id="userList">
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody id="userList"></tbody>
+            </table>
         </div>
-
     </body>
 </html>

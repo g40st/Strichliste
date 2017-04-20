@@ -12,20 +12,23 @@ $(document).ready(function() {
     Socket.onerror = errorHandler;
     Socket.onmessage = receiveMessage;
 
-    $("#btnAdd").click(function() {
-        var request = {
-            "Type": "1",
-            "Length" : "1",
-            "Content" : "requestUsers"
-        };
-        Socket.send(JSON.stringify(request));
-        $(".container").empty();
-        $('.container').append("<h2 align='center'>Strichliste Bude Beira</h2>");
-        $('.container').append('<button type="button" id="btnBack" class="btn btn-primary">Back</button><br><br><br>');
-
-        $("#btnBack").click(function() { 
+    $(".nav a").on("click", function(event) {
+        console.log();
+        if(event.target.text == "Home") {
             location.reload();
-        });
+        } else if(event.target.text == "Drink") {
+            var request = {
+                "Type": "1",
+                "Length" : "1",
+                "Content" : "requestUsers"
+            };
+            $(".contentList").empty();
+            $(".contentList").append('<div class="row contentCheckout"></div>');
+            Socket.send(JSON.stringify(request));
+            
+        }
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
     });
 });
 
@@ -38,7 +41,9 @@ function errorHandler(Event) {console.log("Fehler: " + Event.data);}
 function receiveMessage(message) {
     var msgServer = JSON.parse(message.data);
     //console.log(msgServer);
-    if(msgServer.Type == 1) {   // Ausgabe der Tabelle
+
+    // Ausgabe der Tabelle
+    if(msgServer.Type == 1) {   
         $('#userList').empty();
         var sumCost = 0;
         for (var i = 0; i < msgServer.Users.length; i++) {
@@ -65,74 +70,88 @@ function receiveMessage(message) {
                                     "<td>" + cost + " €</td></tr>");
                                 
         };
-
-            $('#userList').append("<tr class='info'><td></td><td></td><td></td><td></td><td></td><td><b>" + sumCost + " €<b></td></tr></table>"); 
-    } else if(msgServer.Type == 2) {    // Button "Drink" gedrueckt
-        $('.container').append('<div class="col-md-3"><div id="buttonGroup" class="btn-group-vertical"></div></div>');
+        $('#userList').append("<tr class='info'><td></td><td></td><td></td><td></td><td></td><td><b>" + sumCost + " €<b></td></tr></table>"); 
+    } else if(msgServer.Type == 2) {    // Reiter "Drink"
         for (var i = 0; i < msgServer.Users.length; i++) {
-            $('.btn-group-vertical').append('<button type="button" class="btn btn-primary">' + msgServer.Users[i].Username + '</button>');
+            $('.contentCheckout').append('<div class="col-xs-6 col-sm-3 col-md-2">' + 
+                                            '<div class="thumbnail">' +
+                                                '<div class="caption">' +
+                                                    '<h3>' + msgServer.Users[i].Username + '</h3><hr>' +
+                                                    '<button class="btn btn-primary spacingButton AntiAlk ' + msgServer.Users[i].Username + '" type="button">' +
+                                                    'AntiAlk <span class="badge">' + msgServer.Users[i].AntiAlk +'</span></button><br>' +
+                                                    '<button class="btn btn-success spacingButton Beer ' + msgServer.Users[i].Username + '" type="button">' +
+                                                    'Bier <span class="badge">' + msgServer.Users[i].Beer +'</span></button><br>' +
+                                                    '<button class="btn btn-primary spacingButton Schnaps ' + msgServer.Users[i].Username + '" type="button">' +
+                                                    'Schnaps <span class="badge">' + msgServer.Users[i].Schnaps +'</span></button><br>' +
+                                                    '<button class="btn btn-success spacingButton Shot ' + msgServer.Users[i].Username + '" type="button">' +
+                                                    'Shot <span class="badge">' + msgServer.Users[i].Shot +'</span></button>' +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>');
         };
-        // Die Buttons mit dem Daten aus dem ersten User versehen
-        $('.container').append('<div class="col-md-9 buttons"><div class="data"></div></div>');
-        
-        /*
-        $(".btn-success").click(function(event){
-            var request = {
-                "Type": "3",
-                "Length" : "1",
-                "Content" : event.target.id,
-                "Username" : msgServer.Users[0].Username
-            };
-            Socket.send(JSON.stringify(request));
-        });
-        */
-        
-        // Listener fuer den Selectpicker 
-        $('#buttonGroup button').click(function(event) {
-            $(this).addClass('active').siblings().removeClass('active');
-            var selected = event.target.innerHTML;
-            $(".data").remove();
-            for(var i = 0; i < msgServer.Length; i++) {
-                if(selected == msgServer.Users[i].Username) {
-                    $('.buttons').append('<div class="data"><h3>' + selected + ':</h3><button id="AntiAlk" class="btn btn-success" type="button">' +
-                                    'AntiAlk <span class="badge">' + msgServer.Users[i].AntiAlk +'</span></button><br>' +
-                                    '<button id="Beer" class="btn btn-success" type="button">' +
-                                    'Bier <span class="badge">' + msgServer.Users[i].Beer +'</span></button><br>' +
-                                    '<button id="Schnaps" class="btn btn-success" type="button">' +
-                                    'Schnaps <span class="badge">' + msgServer.Users[i].Schnaps +'</span></button><br>' + 
-                                    '<button id="Shot" class="btn btn-success" type="button">' +
-                                    'Shot <span class="badge">' + msgServer.Users[i].Shot +'</span></button><br></div>');
-                }
-            };
-            $(".btn-success").click(function(event){ 
+    
+        $(".Beer").click(function(event) { 
                 var request = {
                     "Type": "3",
                     "Length" : "1",
-                    "Content" : event.target.id,
-                    "Username" : selected
+                    "Content" : "Beer",
+                    "Username" : $(this).attr('class').split(" ")[4]
                 };
                 Socket.send(JSON.stringify(request));
-            });
-        });
-    } else if(msgServer.Type == 3) {
-        $(".data").remove();
-        $('.buttons').append('<div class="data"><h3>' + msgServer.Users[0].Username + ':</h3><button id="AntiAlk" class="btn btn-success" type="button">' +
-                                'AntiAlk <span class="badge">' + msgServer.Users[0].AntiAlk +'</span></button><br>' +
-                                '<button id="Beer" class="btn btn-success" type="button">' +
-                                'Bier <span class="badge">' + msgServer.Users[0].Beer +'</span></button><br>' +
-                                '<button id="Schnaps" class="btn btn-success" type="button">' +
-                                'Schnaps <span class="badge">' + msgServer.Users[0].Schnaps +'</span></button><br>' + 
-                                '<button id="Shot" class="btn btn-success" type="button">' +
-                                'Shot <span class="badge">' + msgServer.Users[0].Shot +'</span></button><br></div>');
-            $(".btn-success").click(function(event){
-                //console.log(event.target.id);   
+
+        }); 
+
+        $(".AntiAlk").click(function(event) { 
                 var request = {
                     "Type": "3",
                     "Length" : "1",
-                    "Content" : event.target.id,
-                    "Username" : msgServer.Users[0].Username
+                    "Content" : "AntiAlk",
+                    "Username" : $(this).attr('class').split(" ")[4]
                 };
                 Socket.send(JSON.stringify(request));
-            });
+        });
+
+        $(".Schnaps").click(function(event) { 
+                var request = {
+                    "Type": "3",
+                    "Length" : "1",
+                    "Content" : "Schnaps",
+                    "Username" : $(this).attr('class').split(" ")[4]
+                };
+                Socket.send(JSON.stringify(request));
+        });
+
+        $(".Shot").click(function(event) { 
+                var request = {
+                    "Type": "3",
+                    "Length" : "1",
+                    "Content" : "Shot",
+                    "Username" : $(this).attr('class').split(" ")[4]
+                };
+                Socket.send(JSON.stringify(request));
+        });
+    } else if(msgServer.Type == 3) {    // Antwort nach Click auf AntiAlk, Beer, Schnaps oder Shot
+        $('.AntiAlk').each(function(index) {
+            if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
+                $(this).html('AntiAlk <span class="badge">' + msgServer.Users[0].AntiAlk +'</span>');
+            }
+        });
+        $('.Beer').each(function(index) {
+            if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
+                $(this).html('Bier <span class="badge">' + msgServer.Users[0].Beer +'</span>');
+            }
+        });
+
+        $('.Schnaps').each(function(index) {
+            if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
+                $(this).html('Schnaps <span class="badge">' + msgServer.Users[0].Schnaps +'</span>');
+            }
+        });
+
+        $('.Shot').each(function(index) {
+            if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
+                $(this).html('Shot <span class="badge">' + msgServer.Users[0].Shot +'</span>');
+            }
+        });
     }
 }

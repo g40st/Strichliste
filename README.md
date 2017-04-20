@@ -5,10 +5,12 @@ Dieses Projekt stellt eine webbasierte Strichliste dar. Das Projekt wurde erfolg
 # Tomcat User anpassen (fuers deployen über ant):
 Datei: conf/tomcat-users.xml
 
+```xml
 <tomcat-users>
   <role rolename="manager-gui"/>
   <user username="admin" password="admin" roles="manager-gui,admin-gui,manager-script,admin-script"/>
 </tomcat-users>
+```
 
 # Screenshots
 

@@ -2,7 +2,7 @@
 
 This is a web-based tally list to track the drinks of some users. You can specify the users in the source code.
 
-![strichliste](https://user-images.githubusercontent.com/7523395/34341645-042d57bc-e99c-11e7-9b6b-5a546230a70c.gif)
+![strichliste](https://user-images.githubusercontent.com/7523395/34341782-252e2f6a-e99f-11e7-99d3-f6b987df4d0c.gif)
 
 ## Dependencies
 * Apache Tomcat

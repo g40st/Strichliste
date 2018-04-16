@@ -2,6 +2,8 @@
 
 This is a web-based tally list to track the drinks of some users. You can specify the users in the source code.
 
+ATTENTION: There is no security measures implemented like session handling. You can reengineer the communication protocol to access all functions. Therefore do not use this web-based tally list on a public network. 
+
 ![strichliste](https://user-images.githubusercontent.com/7523395/34341782-252e2f6a-e99f-11e7-99d3-f6b987df4d0c.gif)
 
 ## Dependencies

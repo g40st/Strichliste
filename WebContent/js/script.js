@@ -25,7 +25,7 @@ $(document).ready(function() {
             $(".contentList").empty();
             $(".contentList").append('<div class="row contentCheckout"></div>');
             Socket.send(JSON.stringify(request));
-            
+
         }
         $(".nav").find(".active").removeClass("active");
         $(this).parent().addClass("active");
@@ -43,16 +43,16 @@ function receiveMessage(message) {
     //console.log(msgServer);
 
     // Ausgabe der Tabelle
-    if(msgServer.Type == 1) {   
+    if(msgServer.Type == 1) {
         $('#userList').empty();
         var sumCost = 0;
         for (var i = 0; i < msgServer.Users.length; i++) {
             // Gessamtbetrag ermitteln
             var cost = 0;
-            cost = (msgServer.Users[i].AntiAlk * msgServer.PriceAntiAlk) + (msgServer.Users[i].Beer * msgServer.PriceBeer) + 
-                    (msgServer.Users[i].Schnaps * msgServer.PriceSchnaps) + (msgServer.Users[i].Shot * msgServer.PriceShot);         
+            cost = (msgServer.Users[i].AntiAlk * msgServer.PriceAntiAlk) + (msgServer.Users[i].Beer * msgServer.PriceBeer) +
+                    (msgServer.Users[i].Schnaps * msgServer.PriceSchnaps) + (msgServer.Users[i].Shot * msgServer.PriceShot);
             sumCost = sumCost + cost;
-            
+
             // jede zweite Zeile gruener Hintergrund
             var colorClassTable;
             if(i%2 == 0) {
@@ -62,21 +62,21 @@ function receiveMessage(message) {
             }
 
             $('#userList').append(  "<tr " + colorClassTable + ">" +
-                                    "<td>" + msgServer.Users[i].Username + "</td>" + 
+                                    "<td>" + msgServer.Users[i].Username + "</td>" +
                                     "<td>" + msgServer.Users[i].AntiAlk + "</td>"+
                                     "<td>" + msgServer.Users[i].Beer + "</td>"+
                                     "<td>" + msgServer.Users[i].Schnaps + "</td>"+
                                     "<td>" + msgServer.Users[i].Shot + "</td>"+
                                     "<td>" + cost + " €</td></tr>");
-                                
+
         };
-        $('#userList').append("<tr class='info'><td></td><td></td><td></td><td></td><td></td><td><b>" + sumCost + " €<b></td></tr></table>"); 
+        $('#userList').append("<tr class='info'><td></td><td></td><td></td><td></td><td></td><td><b>" + sumCost + " €<b></td></tr></table>");
     } else if(msgServer.Type == 2) {    // Reiter "Drink"
         for (var i = 0; i < msgServer.Users.length; i++) {
-            $('.contentCheckout').append('<div class="col-xs-6 col-sm-3 col-md-2">' + 
+            $('.contentCheckout').append('<div class="col-xs-6 col-sm-3 col-md-2 col-lg-2 col-xl-1">' +
                                             '<div class="thumbnail">' +
                                                 '<div class="caption">' +
-                                                    '<h3>' + msgServer.Users[i].Username + '</h3><hr>' +
+                                                    '<h5><b>' + msgServer.Users[i].Username + '</b></h5><hr>' +
                                                     '<button class="btn btn-primary spacingButton AntiAlk ' + msgServer.Users[i].Username + '" type="button">' +
                                                     'AntiAlk <span class="badge">' + msgServer.Users[i].AntiAlk +'</span></button><br>' +
                                                     '<button class="btn btn-success spacingButton Beer ' + msgServer.Users[i].Username + '" type="button">' +
@@ -89,8 +89,8 @@ function receiveMessage(message) {
                                             '</div>' +
                                         '</div>');
         };
-    
-        $(".Beer").click(function(event) { 
+
+        $(".Beer").click(function(event) {
                 var request = {
                     "Type": "3",
                     "Length" : "1",
@@ -99,9 +99,9 @@ function receiveMessage(message) {
                 };
                 Socket.send(JSON.stringify(request));
 
-        }); 
+        });
 
-        $(".AntiAlk").click(function(event) { 
+        $(".AntiAlk").click(function(event) {
                 var request = {
                     "Type": "3",
                     "Length" : "1",
@@ -111,7 +111,7 @@ function receiveMessage(message) {
                 Socket.send(JSON.stringify(request));
         });
 
-        $(".Schnaps").click(function(event) { 
+        $(".Schnaps").click(function(event) {
                 var request = {
                     "Type": "3",
                     "Length" : "1",
@@ -121,7 +121,7 @@ function receiveMessage(message) {
                 Socket.send(JSON.stringify(request));
         });
 
-        $(".Shot").click(function(event) { 
+        $(".Shot").click(function(event) {
                 var request = {
                     "Type": "3",
                     "Length" : "1",

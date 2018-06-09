@@ -2,15 +2,20 @@ import java.io.*;
 
 public class Singleton {
     private static Singleton singleton;
-    private static final User[] users = new User[4];
-    private static final Price price = new Price(); 
-    
+    private static final User[] users = new User[8];
+    private static final Price price = new Price();
+
     private Singleton() {
+        // add users here
         users[0] = new User("user1");
         users[1] = new User("user2");
         users[2] = new User("user3");
-		users[3] = new User("user4");
-        
+		    users[3] = new User("user4");
+        users[4] = new User("user5");
+        users[5] = new User("user6");
+        users[6] = new User("user7");
+        users[7] = new User("user8");
+        users[7] = new User("user8");
     }
 
     public static synchronized Singleton getInstance() {
@@ -28,13 +33,13 @@ public class Singleton {
 
     public synchronized Price getPrice () {
         return price;
-    } 
+    }
 
     public synchronized void incAntiAlkSingleton(User user) {
         user.incAntiAlk();
         Serial serial = new Serial();
         serial.writeToFile(users);
-    } 
+    }
     public synchronized void incSchnapsSingleton(User user) {
         user.incSchnaps();
         Serial serial = new Serial();
@@ -56,7 +61,7 @@ public class Singleton {
         users[i].setBeer(user.getBeer());
         users[i].setSchnaps(user.getSchnaps());
         users[i].setShot(user.getShot());
-    } 
+    }
 
     public synchronized void setData(User user, int i) {
         user.setAntiAlk(i);
@@ -85,10 +90,10 @@ class Serial {
 
     // Unter Windows /apache-tomcat/bin
     //private final static String fileName = new String("StrichlisteDB.txt");
-    
+
     // Backup auf USB-Stick gemounted unter F: (fuer Windows)
     private final static String stickFilePath = null;
-    //private final static String stickFilePath = "F:\\" +fileName; 
+    //private final static String stickFilePath = "F:\\" +fileName;
 
     public static void writeToFile(User[] users) {
         try {
@@ -116,7 +121,7 @@ class Serial {
     }
     public static void readFromFile(User[] users) {
         Singleton singleton = Singleton.getInstance();
-        try {        
+        try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
             for (int i = 0; i < users.length ; i++) {
                 User tmp = (User) in.readObject();

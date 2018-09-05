@@ -1,21 +1,11 @@
-<?xml version="1.0" ?> 
-<project name="strichliste" default="deploy" basedir=".">
+<?xml version="1.0" ?>
+<project name="strichliste" default="war" basedir=".">
     <property name="build"    value="${basedir}/dist"/>
     <!-- Configure the context path for this application -->
     <property name="path"     value="/strichliste"/>
 
-    <!-- Configure properties to access the Manager application -->
-    <property name="url"      value="http://localhost:8080/manager/text"/>
-    <!-- Gitlab_Debian Server Adresse s-IT Server -->
-    <!-- <property name="url"      value="http://localhost:8082/manager/text"/> -->
-    <property name="username" value="admin"/>
-    <property name="password" value="admin"/>
-
     <!-- Configure the path to the Tomcat installation -->
-    <!-- Linux -->
     <property name="catalina.home" value="/opt/tomcat"/>
-    <!-- Windows -->
-    <!--<property name="catalina.home" value="C:\apache-tomcat-8.0.28"/> -->
 
     <!-- Configure the custom Ant tasks for the Manager application -->
     <import file="${catalina.home}/bin/catalina-tasks.xml"/>
@@ -25,18 +15,18 @@
             <include name="*.jar"/>
         </fileset>
     </path>
-    
+
     <target name="init">
         <mkdir dir="build/classes"/>
         <mkdir dir="dist" />
     </target>
-    
+
     <target name="compile" depends="init" >
         <javac destdir="build/classes" debug="true" debuglevel="lines" srcdir="src">
             <classpath refid="compile.classpath"/>
         </javac>
     </target>
-    
+
     <target name="war" depends="compile">
         <war destfile="dist/strichliste.war" webxml="WebContent/WEB-INF/web.xml">
             <fileset dir="WebContent">
@@ -47,26 +37,8 @@
         </war>
     </target>
 
-    <target name="undeploy" description="Remove web application" depends="war">
-    <undeploy url="${url}" username="${username}" password="${password}"
-            path="${path}"/>
-    </target>
-
-        <target name="deploy" description="Install web application"
-          depends="undeploy">
-    <deploy url="${url}" username="${username}" password="${password}"
-            path="${path}" war="file:${build}${path}.war"/>
-    </target>
-
-    <target name="reload" description="Reload web application"
-          depends="deploy">
-    <reload  url="${url}" username="${username}" password="${password}"
-            path="${path}"/>
-    </target>
-    
     <target name="clean">
         <delete dir="dist" />
         <delete dir="build" />
     </target>
-    
 </project>

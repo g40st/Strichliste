@@ -2,6 +2,7 @@ import java.io.*;
 
 public class Singleton {
     private static Singleton singleton;
+    // don't forget to change the array size!
     private static final User[] users = new User[8];
     private static final Price price = new Price();
 
@@ -14,7 +15,6 @@ public class Singleton {
         users[4] = new User("user5");
         users[5] = new User("user6");
         users[6] = new User("user7");
-        users[7] = new User("user8");
         users[7] = new User("user8");
     }
 
@@ -84,16 +84,10 @@ public class Singleton {
     }
 }
 class Serial {
-    // Linux (user home)
-    private final static String userDir = System.getProperty("user.home");
-    private final static String fileName = new String(userDir + "/StrichlisteDB.txt");
-
-    // Unter Windows /apache-tomcat/bin
-    //private final static String fileName = new String("StrichlisteDB.txt");
-
-    // Backup auf USB-Stick gemounted unter F: (fuer Windows)
-    private final static String stickFilePath = null;
-    //private final static String stickFilePath = "F:\\" +fileName;
+    // Linux (docker container)
+    private final static String fileName = new String("/home/user/data/StrichlisteDB.txt");
+    // Backup
+    private final static String stickFilePath = new String("/home/user/backup/BackupStrichlisteDB.txt");
 
     public static void writeToFile(User[] users) {
         try {

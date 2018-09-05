@@ -1,8 +1,13 @@
 <?xml version="1.0" ?>
-<project name="strichliste" default="war" basedir=".">
+<project name="strichliste" default="deploy" basedir=".">
     <property name="build"    value="${basedir}/dist"/>
     <!-- Configure the context path for this application -->
     <property name="path"     value="/strichliste"/>
+
+    <!-- Configure properties to access the Manager application -->
+    <property name="url"      value="http://localhost:8080/manager/text"/>
+    <property name="username" value="admin"/>
+    <property name="password" value="admin"/>
 
     <!-- Configure the path to the Tomcat installation -->
     <property name="catalina.home" value="/opt/tomcat"/>
@@ -35,6 +40,23 @@
             </fileset>
             <classes dir="build/classes"/>
         </war>
+    </target>
+
+    <target name="undeploy" description="Remove web application" depends="war">
+    <undeploy url="${url}" username="${username}" password="${password}"
+            path="${path}"/>
+    </target>
+
+        <target name="deploy" description="Install web application"
+          depends="undeploy">
+    <deploy url="${url}" username="${username}" password="${password}"
+            path="${path}" war="file:${build}${path}.war"/>
+    </target>
+
+    <target name="reload" description="Reload web application"
+          depends="deploy">
+    <reload  url="${url}" username="${username}" password="${password}"
+            path="${path}"/>
     </target>
 
     <target name="clean">

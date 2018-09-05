@@ -14,6 +14,8 @@ ATTENTION: There are no security measures implemented like session handling. You
 * Java JDK
 
 ## Installing / Getting started (Docker)
+  short video: https://youtu.be/0M3CPRcA-HA
+
   1) Install docker on your system
   2) Download the tomcat image
 ```shell

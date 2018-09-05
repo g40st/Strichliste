@@ -46,7 +46,8 @@ ATTENTION: There are no security measures implemented like session handling. You
   ```
   6) Now you can compile the tally list on the container:
   ```shell
-    cd /home/user/project/Web-based-tally-list/
+    cd /home/user/project/Web-based-tally-list/ && \
+    cp /home/user/project/Web-based-tally-list/conf/sample-users.txt /home/user/project/Web-based-tally-list/conf/users.txt && \
     ant
   ```
   7) You can access the tomcat server and the tally list with:

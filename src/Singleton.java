@@ -128,15 +128,6 @@ class Serial {
     public static void readFromFile(User[] users) {
         Singleton singleton = Singleton.getInstance();
         try {
-          ObjectInputStream in2 = new ObjectInputStream(new FileInputStream(fileName));
-          int count_users = 0;
-          for (;;) {
-            Object object = in2.readObject();
-            count_users++;
-          }
-          users = new User[count_users];
-          System.out.println(count_users);
-
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
             for (int i = 0; i < users.length; i++) {
                 User tmp = (User) in.readObject();

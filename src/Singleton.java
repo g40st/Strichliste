@@ -9,7 +9,7 @@ public class Singleton {
     private Singleton() {
       // read the users from the text file
       try {
-        Scanner sc = new Scanner(new File("/usr/local/tomcat/webapps/strichliste/WEB-INF/users.txt"));
+        Scanner sc = new Scanner(new File("/home/user/data/users.txt"));
         int count_users = 0;
         while(sc.hasNextLine()) {
             sc.nextLine();
@@ -18,7 +18,7 @@ public class Singleton {
         users = new User[count_users];
         sc.close();
 
-        Scanner sc2 = new Scanner(new File("/usr/local/tomcat/webapps/strichliste/WEB-INF/users.txt"));
+        Scanner sc2 = new Scanner(new File("/home/user/data/users.txt"));
         int i = 0;
         while(sc2.hasNextLine()) {
             users[i] = new User(sc2.nextLine());
@@ -128,8 +128,17 @@ class Serial {
     public static void readFromFile(User[] users) {
         Singleton singleton = Singleton.getInstance();
         try {
+          ObjectInputStream in2 = new ObjectInputStream(new FileInputStream(fileName));
+          int count_users = 0;
+          for (;;) {
+            Object object = in2.readObject();
+            count_users++;
+          }
+          users = new User[count_users];
+          System.out.println(count_users);
+
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
-            for (int i = 0; i < users.length ; i++) {
+            for (int i = 0; i < users.length; i++) {
                 User tmp = (User) in.readObject();
                 singleton.setDataFromFile(tmp, i);
             }

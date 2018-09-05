@@ -1,21 +1,33 @@
 import java.io.*;
+import java.util.*;
 
 public class Singleton {
     private static Singleton singleton;
-    // don't forget to change the array size!
-    private static final User[] users = new User[8];
+    private static User[] users;
     private static final Price price = new Price();
 
     private Singleton() {
-        // add users here
-        users[0] = new User("user1");
-        users[1] = new User("user2");
-        users[2] = new User("user3");
-		    users[3] = new User("user4");
-        users[4] = new User("user5");
-        users[5] = new User("user6");
-        users[6] = new User("user7");
-        users[7] = new User("user8");
+      // read the users from the text file
+      try {
+        Scanner sc = new Scanner(new File("/usr/local/tomcat/webapps/strichliste/WEB-INF/users.txt"));
+        int count_users = 0;
+        while(sc.hasNextLine()) {
+            sc.nextLine();
+            count_users++;
+        }
+        users = new User[count_users];
+        sc.close();
+
+        Scanner sc2 = new Scanner(new File("/usr/local/tomcat/webapps/strichliste/WEB-INF/users.txt"));
+        int i = 0;
+        while(sc2.hasNextLine()) {
+            users[i] = new User(sc2.nextLine());
+            i++;
+        }
+        sc2.close();
+      } catch(Exception e) {
+        e.printStackTrace();
+      }
     }
 
     public static synchronized Singleton getInstance() {

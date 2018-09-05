@@ -39,6 +39,7 @@
                 <exclude name="WEB-INF/lib/websocket-api.jar"/>
             </fileset>
             <classes dir="build/classes"/>
+            <zipfileset dir="conf/" includes="**/*.txt" prefix="WEB-INF/"/>
         </war>
     </target>
 

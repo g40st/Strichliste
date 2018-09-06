@@ -84,7 +84,7 @@ function receiveMessage(message) {
                                                     '<button class="btn btn-primary spacingButton Schnaps ' + msgServer.Users[i].Username + '" type="button" data-toggle="tooltip" title="Schnaps">' +
                                                     '<i class="fa fa-cocktail fa-lg"></i> <span class="badge">' + msgServer.Users[i].Schnaps +'</span></button>' +
                                                     '<button class="btn btn-primary spacingButton Shot ' + msgServer.Users[i].Username + '" type="button" data-toggle="tooltip" title="Shot">' +
-                                                    '<i class="fa fa-glass-martini fa-lg"></i> <span class="badge">' + msgServer.Users[i].Shot +'</span></button>' +
+                                                    '<i class="fa fa-bullseye fa-lg"></i> <span class="badge">' + msgServer.Users[i].Shot +'</span></button>' +
                                                 '</div>' +
                                             '</div>' +
                                         '</div>');
@@ -150,7 +150,7 @@ function receiveMessage(message) {
 
         $('.Shot').each(function(index) {
             if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
-                $(this).html('<i class="fa fa-glass-martini fa-lg"></i> <span class="badge">' + msgServer.Users[0].Shot +'</span>');
+                $(this).html('<i class="fa fa-bullseye fa-lg"></i> <span class="badge">' + msgServer.Users[0].Shot +'</span>');
             }
         });
     }

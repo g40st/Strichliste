@@ -87,7 +87,7 @@ ant
 There will be a kind of database stored on your local filesystem. The database will be stored on your local user directory. The file is named "StrichlisteDB.txt".
 
 ### Users
-You can edit the users by editing the users.txt. This file is mapped to the filesystem of the host. You can specify the location of the file. After editing the file you have to reload the applicaiton.
+You can edit the users by editing the users.txt. This file is mapped to the filesystem of the host. You can specify the location of the file. After editing the file you have to reload the application.
 
 ```shell
 -v /home/$USER/Downloads/StrichlisteDaten:/home/user/data

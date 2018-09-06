@@ -29,9 +29,8 @@
 }
 
 .spacingButton {
-    margin-top: 0.5em;
-    padding: 0.25em;
-    font-size : 13px;
+    margin: 0.3em 0.2em 0.3em 0em;
+    padding: 0.4em;
 }
 
 .btn-success {
@@ -40,7 +39,7 @@
 }
 
 .thumbnail {
-  background-color: #f9f9f9;
+  background-color: #fcfcfc;
   margin-bottom: 0.5em;
 }
 
@@ -58,5 +57,9 @@ hr {
   padding-bottom: 0 !important;
   padding-top: 0 !important;
   padding-right: 0 !important;
+  text-align: center;
+}
 
+.fa {
+  padding-right: 0.3em;
 }

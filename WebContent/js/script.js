@@ -77,14 +77,14 @@ function receiveMessage(message) {
                                             '<div class="thumbnail">' +
                                                 '<div class="caption">' +
                                                     '<h5><b>' + msgServer.Users[i].Username + '</b></h5><hr>' +
-                                                    '<button class="btn btn-primary spacingButton AntiAlk ' + msgServer.Users[i].Username + '" type="button">' +
-                                                    'AntiAlk <span class="badge">' + msgServer.Users[i].AntiAlk +'</span></button><br>' +
-                                                    '<button class="btn btn-success spacingButton Beer ' + msgServer.Users[i].Username + '" type="button">' +
-                                                    'Bier <span class="badge">' + msgServer.Users[i].Beer +'</span></button><br>' +
-                                                    '<button class="btn btn-primary spacingButton Schnaps ' + msgServer.Users[i].Username + '" type="button">' +
-                                                    'Schnaps <span class="badge">' + msgServer.Users[i].Schnaps +'</span></button><br>' +
-                                                    '<button class="btn btn-success spacingButton Shot ' + msgServer.Users[i].Username + '" type="button">' +
-                                                    'Shot <span class="badge">' + msgServer.Users[i].Shot +'</span></button>' +
+                                                    '<button class="btn btn-primary spacingButton AntiAlk ' + msgServer.Users[i].Username + '" type="button" data-toggle="tooltip" title="Anti Alk">' +
+                                                    '<i class="fa fa-tint fa-lg"></i> <span class="badge">' + msgServer.Users[i].AntiAlk +'</span></button>' +
+                                                    '<button class="btn btn-primary spacingButton Beer ' + msgServer.Users[i].Username + '" type="button" data-toggle="tooltip" title="Bier">' +
+                                                    '<i class="fa fa-beer fa-lg"></i> <span class="badge">' + msgServer.Users[i].Beer +'</span></button><br>' +
+                                                    '<button class="btn btn-primary spacingButton Schnaps ' + msgServer.Users[i].Username + '" type="button" data-toggle="tooltip" title="Schnaps">' +
+                                                    '<i class="fa fa-cocktail fa-lg"></i> <span class="badge">' + msgServer.Users[i].Schnaps +'</span></button>' +
+                                                    '<button class="btn btn-primary spacingButton Shot ' + msgServer.Users[i].Username + '" type="button" data-toggle="tooltip" title="Shot">' +
+                                                    '<i class="fa fa-glass-martini fa-lg"></i> <span class="badge">' + msgServer.Users[i].Shot +'</span></button>' +
                                                 '</div>' +
                                             '</div>' +
                                         '</div>');
@@ -133,24 +133,24 @@ function receiveMessage(message) {
     } else if(msgServer.Type == 3) {    // Antwort nach Click auf AntiAlk, Beer, Schnaps oder Shot
         $('.AntiAlk').each(function(index) {
             if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
-                $(this).html('AntiAlk <span class="badge">' + msgServer.Users[0].AntiAlk +'</span>');
+                $(this).html('<i class="fa fa-tint fa-lg"></i> <span class="badge">' + msgServer.Users[0].AntiAlk +'</span>');
             }
         });
         $('.Beer').each(function(index) {
             if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
-                $(this).html('Bier <span class="badge">' + msgServer.Users[0].Beer +'</span>');
+                $(this).html('<i class="fa fa-beer fa-lg"></i> <span class="badge">' + msgServer.Users[0].Beer +'</span>');
             }
         });
 
         $('.Schnaps').each(function(index) {
             if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
-                $(this).html('Schnaps <span class="badge">' + msgServer.Users[0].Schnaps +'</span>');
+                $(this).html('<i class="fa fa-cocktail fa-lg"></i> <span class="badge">' + msgServer.Users[0].Schnaps +'</span>');
             }
         });
 
         $('.Shot').each(function(index) {
             if($(this).attr('class').split(" ")[4] == msgServer.Users[0].Username) {
-                $(this).html('Shot <span class="badge">' + msgServer.Users[0].Shot +'</span>');
+                $(this).html('<i class="fa fa-glass-martini fa-lg"></i> <span class="badge">' + msgServer.Users[0].Shot +'</span>');
             }
         });
     }

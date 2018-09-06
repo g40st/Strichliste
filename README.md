@@ -7,11 +7,12 @@ ATTENTION: There are no security measures implemented like session handling. You
 ![strichliste](https://user-images.githubusercontent.com/7523395/34341782-252e2f6a-e99f-11e7-99d3-f6b987df4d0c.gif)
 
 ## Dependencies
-* Apache Tomcat
+* [Apache Tomcat](http://tomcat.apache.org/)
 * [jQuery](https://jquery.com/)
 * [Bootstrap](http://getbootstrap.com/)
-* Apache ant
+* [Apache ant](https://ant.apache.org/)
 * Java JDK
+* [Font Awesome](https://fontawesome.com/)
 
 ## Installing / Getting started (Docker)
   short video: https://youtu.be/0M3CPRcA-HA

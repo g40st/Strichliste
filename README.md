@@ -1,6 +1,6 @@
 # Web-based tally list (docker)
 
-This is a web-based tally list to track the drinks of some users. You can specify the users in the source code.
+This is a web-based tally list to track the drinks of some users. 
 
 ATTENTION: There are no security measures implemented like session handling. You can reengineer the communication protocol to access all functions. Therefore do not use this web-based tally list on a public network.
 
@@ -26,9 +26,9 @@ docker pull g40st/docker_tally_list
 docker run --rm -p 8888:8080 -v /home/$USER/Downloads/TallyList:/home/user/data -v /home/$USER/Downloads/TallyListBackup:/home/user/backup  g40st/docker_tally_list:latest
 ```
 
-  -v /home/$USER/Downloads/TallyList:... -> This is the location, where the databse will be mounted on the host system. You can specify the location. 
+   -v /home/$USER/Downloads/TallyList:... -> This is the location, where the databse will be mounted on the host system. You can  specify the location. 
 
-  -v /home/$USER/Downloads/TallyListBackup -> The second volumne contains a backup of the database. You can point this volume to a USB stick or network drive.
+  -v /home/$USER/Downloads/TallyListBackup -> The second volumne contains a backup of the database. You can mount this volume to a USB stick or network drive.
 
   4) Copy the conf/sample-users.txt (repo) in the specified directory (/home/$USER/Downloads/TallyList) and rename it to users.txt. You can also edit the users of the application.
       
@@ -43,7 +43,7 @@ docker pull g40st/docker_dev_tomcat
 ```
   3) Download the repository to your local system. That could look like:
  ```shell
-/home/ghost/Project/Web-based-tally-list
+git clone https://github.com/g40st/Web-based-tally-list.git /home/$USER/Project/Web-based-tally-list
 ```   
   4) Start the docker image using this command:
   ```shell
@@ -63,7 +63,7 @@ docker pull g40st/docker_dev_tomcat
 
   5) Connect to the container: (You can get the actual container name by docker ps)
   ```shell
-    docker exec -it <container_name> bash   
+    docker exec -it <container_name> bash  
   ```
   6) Now you can compile the tally list on the container:
 ```shell
@@ -75,7 +75,7 @@ ant
       http://localhost:8888/strichliste/#
     
 
-## Code Editing
+### Code Editing
   Edit the code on your local system (/home/ghost/Project/Web-based-tally-list). Then use the bash in the container to run ant on the container. 
 
 ## Using

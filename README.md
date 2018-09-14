@@ -1,5 +1,7 @@
 # Web-based tally list (docker)
 
+DEPRECATED (new version): [Tally List](https://github.com/g40st/tally_list_docker)
+
 This is a web-based tally list to track the drinks of some users. 
 
 ATTENTION: There are no security measures implemented like session handling. You can reengineer the communication protocol to access all functions. Therefore do not use this web-based tally list on a public network.
